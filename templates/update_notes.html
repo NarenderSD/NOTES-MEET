@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Updates Notes</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Notes</li>
+        </ol>
+        
+     
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Updates Notes
+            </div>
+            <div class="card-body">
+                {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                          {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                       <form method="POST" action="{% url 'edit_notes' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <br />
+                           
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Notes Title</label>
+                                <input type="text" class="form-control"  name="notestitle" value="{{data_notes.notestitle}}">
+                                <input type="hidden" class="form-control"  name="notes_id" value="{{data_notes.id}}">
+
+                             
+                            </div>
+                             <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Subject</label>
+                                <input type="text" class="form-control"  name="subject" value="{{data_notes.subject}}" >
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Notes Description</label>
+                                <textarea class="form-control"  name="notesdesc" value="" >{{data_notes.notesdesc}}</textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="file1" class="form-label">File 1</label>
+                                {% if data_notes.file1 %}
+                                    <a href="{{ data_notes.file1.url }}" target="_blank"><strong style="color: red">View</strong></a>
+                                    <input type="file" class="form-control" id="file1" name="file1">
+                                {% else %}
+                                <strong style="color: red">: File Not Available</strong>
+                                {% endif %}
+                               
+                            </div>
+                          
+                            <div class="mb-3">
+                                <label for="file2" class="form-label">File 2</label>
+                                {% if data_notes.file2 %}
+                                    <a href="{{ data_notes.file2.url }}" target="_blank"><strong style="color: red">View</strong></a> |
+                                    <input type="file" class="form-control" id="file2" name="file2">
+                                {% else %}
+                                <strong style="color: red">: File Not Available</strong>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="file3" class="form-label">File 3</label>
+                                {% if data_notes.file3 %}
+                                    <a href="{{ data_notes.file3.url }}" target="_blank"><strong style="color: red">View</strong></a> |
+                                    <input type="file" class="form-control" id="file3" name="file3">
+                                {% else %}
+                                <strong style="color: red">: File Not Available</strong>
+                               
+                                {% endif %}
+                            </div>
+                        
+                            <!-- File4 -->
+                            <div class="mb-3">
+                                <label for="file4" class="form-label">File 4</label>
+                                {% if data_notes.file4 %}
+                                    <a href="{{ data_notes.file4.url }}" target="_blank"><strong style="color: red">View</strong></a> |
+                                    <input type="file" class="form-control" id="file4" name="file4">
+                                {% else %}
+                                   
+                                    <strong style="color: red">: File Not Available</strong>
+                               
+                                 {% endif %}
+                            </div>
+                            <button type="submit" name="submit" class="btn btn-primary">Update</button>
+                        </form>
+            </div>
+        </div>
+    </div>
+</main>{% endblock %}

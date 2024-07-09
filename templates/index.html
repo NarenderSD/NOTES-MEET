@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>NOTES MEET|| Home Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-scholar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 586 Scholar
+
+https://templatemo.com/tm-586-scholar
+
+-->
+  </head>
+
+<body>
+
+
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                  
+                        <h1 style="color: white;">NOTES MEET</h1>
+                  
+                  
+                    <ul class="nav">
+                        
+                      <li class="scroll-to-section"><a href="{% url 'index' %}" class="active">Home</a></li>
+                      <li class="scroll-to-section"><a href="{% url 'notes_details' %}">Notes</a></li>
+                    
+                     
+                      <li class="scroll-to-section"><a href="{% url 'usersignup' %}">Register Now!</a></li>
+                      <li class="scroll-to-section"><a href="{% url 'login' %}">Login</a></li>
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-banner">
+            <div class="item item-2">
+              <div class="header-text">
+                <span class="category">Knowledge Shared, Success Multiplied</span>
+                <h2>Welcome to Your Ultimate Knowledge Hub!</h2>
+                <p>Join our community where sharing and accessing study materials is simple and efficient. Upload, view, and download notes, textbooks, and more, all contributed by fellow students. Share your knowledge and succeed together.</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="https://www.linkedin.com/in/narender-singh1/">Contact</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i>Request Demo</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services section" id="services">
+    <div class="container">
+     <h3>About Us</h3>
+     <hr
+     <h5><b><i>Unlocking Knowledge, Empowering Minds</i></b></h5>
+     <br>
+     <p>Welcome to our revolutionary notes sharing system, a digital haven designed to simplify and enhance the way students share and access academic resources. Imagine a place where your textbooks, PDFs, and handwritten notes can be uploaded and accessed with ease, a centralized platform tailored to foster collaborative learning. Our website allows users to not only view and download a vast array of notes but also contribute their own valuable resources. By registering and logging in, users gain access to a personalized dashboard where they can effortlessly share their notes, enriching the learning experience for everyone involved. This intuitive system is the ultimate tool for students seeking to maximize their academic potential while fostering a community of knowledge sharing.</p>
+     <br>
+      <h5><b>NOTES MEET</b></h5>
+     <h5><i>Apne Notes, Sabke Liye</i></h5>
+     <br>
+
+     <p>Crafted with the needs of college students in mind, our notes sharing system addresses the common challenges faced by those looking to share and access study materials. We understand the struggle of keeping up with expenses and the desire to support fellow students. Our platform offers a seamless solution, allowing users to share their notes and resources, and in turn, benefit from the collective knowledge of their peers. Whether it’s sharing comprehensive notes for upcoming exams or accessing detailed textbooks and PDFs, this platform empowers students to excel academically without the financial burden. With our system, you can effortlessly contribute to a growing repository of knowledge and utilize it whenever needed, ensuring that every student has the opportunity to succeed.</p>
+     <a href="{% url 'usersignup' %}" class="btn btn-primary">Join Us</a>
+    </div>
+  </div>
+
+
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Narender NOTES MEET @ Python(Django)</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/isotope.min.js' %}"></script>
+  <script src="{% static 'js/owl-carousel.js' %}"></script>
+  <script src="{% static 'js/counter.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+
+  </body>
+</html>

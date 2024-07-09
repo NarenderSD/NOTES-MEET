@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Add Notes</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Notes</li>
+        </ol>
+        
+     
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+             Add Notes
+            </div>
+            <div class="card-body">
+                {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                          {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                       <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <br />
+                           
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Notes Title</label>
+                                <input type="text" class="form-control"  name="notestitle" value="" required='true'>
+
+                             
+                            </div>
+                             <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Subject</label>
+                                <input type="text" class="form-control"  name="subject" value="" required='true'>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Notes Description</label>
+                                <textarea class="form-control"  name="notesdesc" value="" required='true'></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Upload File</label>
+                               <input type="file" class="form-control"  name="file1" value="" required='true'>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">More File</label>
+                               <input type="file" class="form-control"  name="file2" value="">
+                               
+                            </div>
+                            
+                            <button type="submit" name="submit" class="btn btn-primary">Add</button>
+                        </form>
+            </div>
+        </div>
+    </div>
+</main>{% endblock %}

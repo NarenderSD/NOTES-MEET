@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Manage Notes</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Manage Notes</li>
+        </ol>
+        
+     
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+              {{user.first_name}} {{user.last_name}} Notes Details
+            </div>
+            <div class="card-body">
+                {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                          {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                       <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                            <tr class="text-dark">
+                                <th scope="col">#</th>
+                               
+                                <th scope="col">Subject</th>
+                                <th scope="col">Notes Title</th>
+                                <th scope="col">Creation Date</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data_list %}
+                            <tr>
+                                
+                                <td>{{ forloop.counter }}</td>
+                                
+                                <td>{{i.subject}}</td>
+                                <td>{{i.notestitle}}</td>
+                                <td>{{i.created_at}}</td>
+                               
+                                <td><a class="btn btn-sm btn-primary" href="{% url 'view_notes' i.id %}">Edit</a> 
+                                    <a class="btn btn-sm btn-primary" href="{% url 'delete_notes' i.id %}"  onclick="return confirm('Do you really want to Delete ?');">Delete</a></td>
+                            </tr>{% endfor %}
+                           
+                        </tbody>
+                    </table>
+                    <div class="pagination" style="padding-top: 10px;padding: left 10px;text-align: center;">
+                        <span class="step-links">
+                            {% if data_list.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ data_list.previous_page_number }}">previous</a>
+                            {% endif %}
+                    
+                            <span class="current" style="padding-left: 10px;padding-bottom: 10px;">
+                                Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
+                            </span>
+                    
+                            {% if data_list.has_next %}
+                                <a href="?page={{ data_list.next_page_number }}">next</a>
+                                <a href="?page={{ data_list.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+            </div>
+        </div>
+    </div>
+</main>{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Search Notes</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Search Notes</li>
+        </ol>
+        
+     
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+             Search Notes
+            </div>
+            
+            <div class="card-body">
+                <form method="get">
+                    {% csrf_token %}
+                   
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Search(Title or Subject)</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="query" name="query" class="form-control" required="">
+                        </div>
+                    </div>
+        <br>
+        
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-dark">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <br>
+{% if searchdata %}
+                {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                          {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'info' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+
+                       <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                            <tr class="text-dark">
+                                <th scope="col">#</th>
+                               
+                                <th scope="col">Subject</th>
+                                <th scope="col">Notes Title</th>
+                                <th scope="col">Creation Date</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in searchdata %}
+                            <tr>
+                                
+                                <td>{{ forloop.counter }}</td>
+                                
+                                <td>{{i.subject}}</td>
+                                <td>{{i.notestitle}}</td>
+                                <td>{{i.created_at}}</td>
+                               
+                                <td><a class="btn btn-sm btn-primary" href="{% url 'view_notes' i.id %}">Edit</a> 
+                                    <a class="btn btn-sm btn-primary" href="{% url 'delete_notes' i.id %}"  onclick="return confirm('Do you really want to Delete ?');">Delete</a></td>
+                            </tr>{% endfor %}
+                           
+                        </tbody>
+                    </table>{% else %}
+                    {% if query %}
+                        <p style="font-size: 20px;color: blue;text-align: center;">No records found for: "{{ query }}"</p>
+                    
+                    {% endif %}
+                  
+            </div>
+        </div>
+    </div> {% endif %}
+</main>{% endblock %}

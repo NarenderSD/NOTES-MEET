@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">User Profile</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Profile</li>
+        </ol>
+        
+     
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+              {{user.first_name}} {{user.last_name}} Profile Details
+            </div>
+            <div class="card-body">
+                {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                          {% if messages %}
+                       {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       {{message}}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                        </button>
+                         </div>
+                       {% endif %}
+                       {% endfor %}
+                       {% endif %}
+                       <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <label style="padding-bottom: 10px;">Old Profile Pic</label>
+                        <div class="form-floating mb-3">
+                           <img src="{{ user.profile_pic.url }}" width="100" height="100">
+                        </div>
+                
+                        <label style="padding-bottom: 10px;">Profile Pic</label>
+                        <div class="form-floating mb-3">
+                            <input type="file" class="form-control" name="profile_pic">
+                        </div>
+                
+                        <label for="first_name">First Name</label>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="first_name" value="{{ user.first_name }}">
+                        </div>
+                
+                        <label for="last_name">Last Name</label>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="last_name" value="{{ user.last_name }}">
+                        </div>
+                
+                        <label for="email">Email</label>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" readonly name="email" value="{{ user.email }}">
+                        </div>
+                
+                        <label for="mobno">Mobile Number</label>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="mobno" readonly maxlength="10" pattern="[0-9]+" value="{{ nsuser.mobilenumber }}">
+                        </div>
+                
+                        <label for="username">Username</label>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" readonly name="username" value="{{ user.username }}">
+                        </div>
+                
+                        <label for="regdate">Registration Date</label>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" readonly name="regdate" value="{{ user.date_joined }}">
+                        </div>
+                
+                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</main>{% endblock %}
